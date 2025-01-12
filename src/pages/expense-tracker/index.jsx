@@ -20,7 +20,7 @@ export const ExpenseTracker = () => {
 
     const userSignOut = async () => {
         try {
-            const confirmation = window.confirm("Are you sure you want to log out?");
+            const confirmation = window.confirm("Are you sure want to log out?");
             if (confirmation) {
                 await signOut(auth);
                 localStorage.clear();
