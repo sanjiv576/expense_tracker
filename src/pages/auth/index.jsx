@@ -1,9 +1,9 @@
-import { auth, provider } from "../../config/firebase-config"
-import { signInWithPopup } from 'firebase/auth'
-import { useNavigate } from "react-router-dom"
-import "./styles.css"
-export const Auth = () => {
+import { auth, provider } from "../../config/firebase-config";
+import { signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import "./styles.css";
 
+export const Auth = () => {
     const navigate = useNavigate();
 
     const signWithGoogle = async () => {
@@ -16,20 +16,24 @@ export const Auth = () => {
             name: results.user.displayName,
             profilePhoto: results.user.photoURL,
             isAuth: true,
-        }
-        // JSON.stringfly converts JSON object into string
+        };
+        // JSON.stringify converts JSON object into string
         localStorage.setItem("auth", JSON.stringify(authInfo));
 
-        navigate('/e');
+        navigate("/e");
+    };
 
-    }
-    return <>
-        <div className="login-page">
-            <p>Sign In With Google to Continue</p>
-            <button className="login-with-google-btn" onClick={signWithGoogle}>
-                {" "}
-                Sign In With Google
-            </button>
-        </div>
-    </>
-}
+    return (
+        <>
+            <div className="login-page">
+                <p className="login-message">Sign In With Google to Continue</p>
+                <button
+                    className="login-with-google-btn"
+                    onClick={signWithGoogle}
+                >
+                    Sign In With Google
+                </button>
+            </div>
+        </>
+    );
+};

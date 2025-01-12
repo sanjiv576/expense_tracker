@@ -1,60 +1,98 @@
+/* General styling for the login page */
 .login-page {
     width: 100vw;
-    height: calc(100vh);
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
     text-shadow: -1px 2px 6px rgba(2, 48, 71, 0.54);
-    background: rgb(0, 204, 255);
-    background: linear-gradient(90deg,
-            rgba(0, 204, 255, 1) 0%,
-            rgba(115, 33, 188, 1) 100%);
+    background: linear-gradient(135deg, #00ccff, #7321bc);
+    animation: fadeIn 1.5s ease-in-out;
+    /* Added animation for page fade-in */
 }
 
-/* #219ebc */
-
-.login-page p {
-    font-size: 50px;
+/* Login message styling */
+.login-message {
+    font-size: 2.5rem;
     font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: slideDown 1.2s ease;
+    /* Smooth slide-down animation */
 }
 
-/* GOOGLE BUTTOn */
+/* Styling for Google button */
 .login-with-google-btn {
     cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    padding: 5px 16px 12px 42px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 3px;
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
-    font-size: 25px;
-    font-weight: 500;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: "Segoe UI", Roboto, sans-serif;
     background-color: white;
-    background-repeat: no-repeat;
-    background-position: 12px 11px;
+    color: #444;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    /* Smooth hover effects */
 }
 
+/* Adding an icon for Google button */
+.login-with-google-btn::before {
+    content: "";
+    background: url('https://upload.wikimedia.org/wikipedia/commons/4/4a/Google_2015_logo.svg') no-repeat center;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+/* Hover and active states for Google button */
 .login-with-google-btn:hover {
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
+    background-color: #f4f4f4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+    /* Scale-up effect on hover */
 }
 
 .login-with-google-btn:active {
-    background-color: #e82d2d;
+    background-color: #ebebeb;
+    transform: scale(1);
+    /* Reset scale on click */
 }
 
-.login-with-google-btn:focus {
-    outline: none;
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25),
-        0 0 0 3px #386ac6;
-}
-
+/* Disabled state for Google button */
 .login-with-google-btn:disabled {
     filter: grayscale(100%);
-    background-color: #ebebeb;
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+    background-color: #ddd;
+    box-shadow: none;
     cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
