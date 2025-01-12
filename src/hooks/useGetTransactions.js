@@ -6,6 +6,11 @@ import { useGetUserInfo } from "./useGetUserInfo";
 export const useGetTransactions = () => {
     // State to hold transactions
     const [transactions, setTransactions] = useState([]);
+    const [totalTransactions, setTotalTransactions] = useState({
+        balance: 0.00,
+        income: 0.00,
+        expenses: 0.00,
+    });
 
     // Reference to the transactions collection in Firestore
     const transactionCollectionRef = collection(db, "transactions");
@@ -28,6 +33,8 @@ export const useGetTransactions = () => {
             // Listen for changes in the transactions collection
             unsubscribe = onSnapshot(queryTransactions, (snapshot) => {
                 const docs = []; // Initialize an empty array for storing transactions
+                let totalIncome = 0.00;
+                let totalExpenses = 0.00;
 
                 // Iterate over each document in the snapshot
                 snapshot.forEach((doc) => {
@@ -35,10 +42,22 @@ export const useGetTransactions = () => {
 
                     // Combine document data and ID into a single object
                     docs.push({ ...doc.data(), id: doc.id });
+
+                    if (doc.data().transactionType === 'income') {
+                        totalIncome += parseFloat(doc.data().transactionAmount)
+                    }
+                    else {
+                        totalExpenses += parseFloat(doc.data().transactionAmount)
+                    }
                 });
 
                 // Update state with the fetched transactions
                 setTransactions(docs);
+                setTotalTransactions({
+                    balance: totalIncome - totalExpenses,
+                    income: totalIncome,
+                    expenses: totalExpenses,
+                })
             });
         } catch (err) {
             console.error("Error fetching transactions:", err); // Error handling
@@ -57,5 +76,5 @@ export const useGetTransactions = () => {
     }, [userId]); // Re-run effect if userId changes
 
     // Return the transactions state
-    return { transactions };
+    return { transactions, totalTransactions, };
 };
